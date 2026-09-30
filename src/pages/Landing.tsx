@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import {
   Box, Button, Container, Typography, Grid, Card, CardContent,
-  Avatar, Chip, Stack, Divider,
+  Avatar, Chip, Stack,
 } from '@mui/material';
 import {
   LocalHospital, People, CalendarMonth, LocalPharmacy, Biotech,
-  Receipt, SwapHoriz, BarChart, Shield, Wifi, Speed, CheckCircle,
-  ArrowForward, Star, MedicalServices, AdminPanelSettings,
+  Receipt, SwapHoriz, BarChart, Shield, Wifi, CheckCircle,
+  ArrowForward, MedicalServices, AdminPanelSettings,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -22,24 +22,11 @@ const FEATURES = [
   { icon: <AdminPanelSettings />, title: 'Role-Based Access', desc: 'Granular permissions for admin, doctors, receptionists, and more.', color: '#37474F' },
 ];
 
-const STATS = [
-  { value: '500+', label: 'Hospitals Connected' },
-  { value: '2M+', label: 'Patients Managed' },
-  { value: '99.9%', label: 'Uptime SLA' },
-  { value: '50+', label: 'Cities in Pakistan' },
-];
-
 const TRANSFER_STEPS = [
   { step: '01', title: 'Initiate Request', desc: 'Doctor creates a transfer request with full patient medical summary, diagnosis, medications, and urgency level.' },
   { step: '02', title: 'Receiving Hospital Accepts', desc: 'Destination hospital reviews the patient record and accepts or schedules the arrival.' },
   { step: '03', title: 'Patient in Transit', desc: 'Transfer is marked in-transit. Both hospitals track the handover in real time.' },
   { step: '04', title: 'Handover Complete', desc: 'Receiving hospital confirms arrival. Full transfer timeline is archived for audit.' },
-];
-
-const TESTIMONIALS = [
-  { name: 'Dr. Sana Mirza', role: 'Medical Director, Aga Khan Hospital', text: 'SehatConnect has transformed how we coordinate inter-hospital transfers. What used to take hours of phone calls now happens in minutes.', rating: 5 },
-  { name: 'Ahmed Farooq', role: 'CEO, Al-Shifa Healthcare', text: 'The pharmacy POS alone saved us 30% in billing errors. The integrated system is exactly what Pakistani healthcare needed.', rating: 5 },
-  { name: 'Dr. Imran Qureshi', role: 'Head of Cardiology, CMH Rawalpindi', text: 'Critical patient transfers are now handled with zero information loss. The timeline feature gives us complete accountability.', rating: 5 },
 ];
 
 function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -110,7 +97,7 @@ export default function Landing() {
         </Box>
         <Container maxWidth="lg" sx={{ position: 'relative' }}>
           <Grid container spacing={6} alignItems="center">
-            <Grid size={{ xs: 12, md: 7 }}>
+            <Grid size={{ xs: 12 }}>
               <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
                 <Chip label="Pakistan's #1 Hospital Management Platform" size="small"
                   sx={{ bgcolor: 'rgba(255,255,255,0.15)', color: '#fff', fontWeight: 700, mb: 3, fontSize: '0.75rem', letterSpacing: 0.5 }} />
@@ -139,24 +126,6 @@ export default function Landing() {
                 </Stack>
               </motion.div>
             </Grid>
-            <Grid size={{ xs: 12, md: 5 }}>
-              <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-                <Grid container spacing={2}>
-                  {STATS.map((s, i) => (
-                    <Grid key={i} size={{ xs: 6 }}>
-                      <Card elevation={0} sx={{
-                        bgcolor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255,255,255,0.2)', borderRadius: 3, p: 2.5,
-                        textAlign: 'center',
-                      }}>
-                        <Typography variant="h4" fontWeight={900} color="#fff">{s.value}</Typography>
-                        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.75)', fontWeight: 600 }}>{s.label}</Typography>
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              </motion.div>
-            </Grid>
           </Grid>
         </Container>
       </Box>
@@ -168,7 +137,6 @@ export default function Landing() {
             {[
               { icon: <Shield sx={{ fontSize: 18 }} />, label: 'HIPAA-Aligned Security' },
               { icon: <Wifi sx={{ fontSize: 18 }} />, label: 'Offline-First Architecture' },
-              { icon: <Speed sx={{ fontSize: 18 }} />, label: '99.9% Uptime SLA' },
               { icon: <CheckCircle sx={{ fontSize: 18 }} />, label: 'PMDC Compliant' },
             ].map((b, i) => (
               <Stack key={i} direction="row" spacing={0.75} alignItems="center" sx={{ color: 'text.secondary' }}>
@@ -278,50 +246,6 @@ export default function Landing() {
         </Container>
       </Box>
 
-      {/* ── TESTIMONIALS ── */}
-      <Box sx={{ py: { xs: 8, md: 12 } }}>
-        <Container maxWidth="lg">
-          <FadeIn>
-            <Box sx={{ textAlign: 'center', mb: 7 }}>
-              <Typography variant="h3" fontWeight={800} sx={{ fontSize: { xs: '1.9rem', md: '2.4rem' } }}>
-                Trusted by Pakistan's Best Hospitals
-              </Typography>
-            </Box>
-          </FadeIn>
-          <Grid container spacing={3}>
-            {TESTIMONIALS.map((t, i) => (
-              <Grid key={i} size={{ xs: 12, md: 4 }}>
-                <FadeIn delay={i * 0.1}>
-                  <Card elevation={0} sx={{
-                    height: '100%', border: '1px solid', borderColor: 'divider', borderRadius: 3,
-                    p: 0.5,
-                  }}>
-                    <CardContent sx={{ p: 3 }}>
-                      <Stack direction="row" spacing={0.5} mb={2}>
-                        {[...Array(t.rating)].map((_, j) => <Star key={j} sx={{ color: '#FFC107', fontSize: 18 }} />)}
-                      </Stack>
-                      <Typography variant="body1" color="text.secondary" lineHeight={1.7} mb={3} sx={{ fontStyle: 'italic' }}>
-                        "{t.text}"
-                      </Typography>
-                      <Divider sx={{ mb: 2 }} />
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Avatar sx={{ bgcolor: 'primary.main', width: 40, height: 40, fontSize: '0.9rem', fontWeight: 700 }}>
-                          {t.name.charAt(0)}
-                        </Avatar>
-                        <Box>
-                          <Typography variant="body2" fontWeight={700}>{t.name}</Typography>
-                          <Typography variant="caption" color="text.secondary">{t.role}</Typography>
-                        </Box>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </FadeIn>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
       {/* ── CTA BANNER ── */}
       <Box sx={{
         py: { xs: 8, md: 10 },
@@ -334,7 +258,7 @@ export default function Landing() {
                 Ready to Modernize Your Hospital?
               </Typography>
               <Typography variant="h6" sx={{ color: 'rgba(255,255,255,0.8)', mb: 4, fontWeight: 400 }}>
-                Join 500+ healthcare facilities already running on SehatConnect.
+                A demo platform showcasing how Pakistani healthcare facilities can go digital.
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
                 <Button variant="contained" size="large" onClick={() => navigate('/login')}
@@ -372,3 +296,4 @@ export default function Landing() {
     </Box>
   );
 }
+                    '&:hover': { bgcolor: '#E3F2FD' } }}>
